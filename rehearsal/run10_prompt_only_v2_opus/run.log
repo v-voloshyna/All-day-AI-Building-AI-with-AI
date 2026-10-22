@@ -1,0 +1,29 @@
+session_id=10bc702d-8d32-4601-b05e-06381d9c8f81  turns=7  46s  $0.27  model=['claude-opus-5-5']
+---- agent reply ----
+I built the classifier, and it got **95.35% accuracy on eval.csv** (452 rows; macro F1 0.952). Training takes about 1 second on CPU.
+
+- **`train.py`**: trains a TF-IDF model (single words and word pairs) with logistic regression, saves it to `model.joblib`, and prints the eval accuracy with a per-class breakdown.
+- **`predict.py`**: loads the model once when it's imported and exposes `predict(text) -> "positive" | "negative"`. You can also run it from the command line: `python3 predict.py "some text"`. I tried one clearly positive and one clearly negative sentence and both came back right.
+- **`README.md`**: how to run it, the results, and the caveat below.
+
+**The 95% may be higher than you'd get on brand-new reviews.** Each row is a roughly 860-character excerpt of a longer movie review. No eval text appears in data.csv, even as a near-copy: only 2 eval rows share any 10-word run with the training data. But the same films and actors appear in both files (for example "carrie-anne moss" and "tim blake nelson"). So different parts of the same original review are probably split between training and eval. I can't confirm this because there's no review ID column. If you have one, splitting by review would give a more honest number.
+
+I picked the model settings once up front and didn't tune them against eval.csv. `model.joblib` is already listed in your `.gitignore`, so it won't be committed. Nothing is committed yet; the three new files are untracked.
+---------------------
+eval.csv: accuracy 0.954  (431/452)   stage=baseline   0.1s
+holdout.csv: accuracy 0.835  (835/1000)   stage=baseline   0.3s
+✗  gold=positive pred=negative  Not bad at all, actually.
+  ✓  gold=positive pred=positive  I can't say I disliked it.
+  ✗  gold=positive pred=negative  It wasn't the disaster everyone promised.
+  ✓  gold=positive pred=positive  Didn't hate it.
+  ✗  gold=negative pred=positive  Two hours of my life I'll never get back. Fantastic.
+  ✗  gold=negative pred=positive  Oh great, another sequel nobody asked for.
+  ✗  gold=negative pred=positive  Loved the part where it ended.
+  ✓  gold=negative pred=negative  Gorgeous visuals, and that's the only nice thing I can say.
+  ✓  gold=positive pred=positive  Slow start, but by the end I was in tears, in a good way.
+  ✓  gold=negative pred=negative  Save your money.
+  ✓  gold=negative pred=negative  The battery dies in an hour.
+  ✓  gold=positive pred=positive  Arrived early and works exactly as described.
+
+adversarial.csv: accuracy 0.583  (7/12)   stage=baseline   0.0s
+exit=0

@@ -1,0 +1,132 @@
+{
+ "duration_api_ms": 126954,
+ "stop_reason": "end_turn",
+ "session_id": "1429fe54-8885-427f-ab98-8e0647cffd8d",
+ "total_cost_usd": 0.593571,
+ "usage": {
+  "input_tokens": 6,
+  "cache_creation_input_tokens": 5061,
+  "cache_read_input_tokens": 150630,
+  "output_tokens": 2559,
+  "output_tokens_details": {
+   "thinking_tokens": 674
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 5061,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [
+   {
+    "input_tokens": 2,
+    "output_tokens": 1028,
+    "cache_read_input_tokens": 52681,
+    "cache_creation_input_tokens": 652,
+    "cache_creation": {
+     "ephemeral_5m_input_tokens": 0,
+     "ephemeral_1h_input_tokens": 652
+    },
+    "type": "message"
+   }
+  ],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "modelUsage": {
+  "claude-opus-5-5": {
+   "inputTokens": 30,
+   "outputTokens": 12433,
+   "thinkingTokens": 2800,
+   "cacheReadInputTokens": 585595,
+   "cacheCreationInputTokens": 28459,
+   "webSearchRequests": 0,
+   "costUSD": 0.593571,
+   "contextWindow": 1000000,
+   "maxOutputTokens": 128000,
+   "canonicalModel": "claude-opus-5-5",
+   "provider": "firstParty",
+   "costBasis": "list"
+  }
+ },
+ "permission_denials": [],
+ "terminal_reason": "completed",
+ "fast_mode_state": "off",
+ "fast_mode_disabled_reason": "sdk_opt_in_required",
+ "subagent_stats": {
+  "spawned": 0,
+  "requested": {
+   "background": 0,
+   "foreground": 0,
+   "unset": 0
+  },
+  "started_in_background": 0,
+  "max_depth": 0,
+  "spawned_by_subagents": 0,
+  "completed": 0,
+  "failed": 0,
+  "killed": {
+   "parent": 0,
+   "user": 0,
+   "system": 0
+  },
+  "refused": {
+   "depth_limit": 0,
+   "concurrency_limit": 0,
+   "budget": 0
+  },
+  "by_type": {}
+ },
+ "safety_stops": 0,
+ "is_error": false,
+ "num_turns": 3,
+ "subtype": "success",
+ "api_error_status": null,
+ "result": "I can't tell you the exact cause without your data. The most likely explanation is that your reviews look different from the training data, and short reviews fit 68% well.\n\n**My 93.07% wasn't caused by leakage.** No eval review appears in the training data. Only 9 of the 404 eval reviews share even one 8-word phrase with a training review, and none share five.\n\n**But 93.07% was on the lucky side.** In 5-fold cross-validation on `data.csv`, folds ranged from 86% to 93%, with a mean of **88.4%**. A fairer figure for this kind of data is about 88%.\n\n**Most of the remaining gap is very likely a mismatch between your data and the training data.** All of the training and eval data looks the same: roughly 150-word passages taken from longer movie reviews (median exactly 150 words, often starting mid-sentence). Both splits come from that one source, so the 93% only tells you how the model does on more of the same. When I cut the eval reviews short, accuracy drops sharply:\n\n| Words kept per review | Eval accuracy |\n|---|---|\n| 150 (full) | 93.1% |\n| 80 | 87.4% |\n| 40 | 81.4% |\n| 20 | 71.0% |\n| 10 | 64.4% |\n\nYour 68.4% falls between the 10- and 20-word results. A word-count model needs many words to outvote odd individual weights, like \"good\" leaning negative, which the earlier tests found. The other likely shift is topic: products, restaurants or tweets use different words from film criticism, and a model trained on 2,000 movie review passages has no useful weights for those words.\n\nOne thing to rule out quickly: check that your labels are exactly lowercase \"positive\" and \"negative\". Something like `Positive` or `1/0` would make every comparison fail, so you'd see 0% or around 50%. That probably isn't the cause here, since 68% is too high for it.\n\n**To pin it down, I'd need one of these:**\n- Your held-out file (or a sample of it). I can then compare length, topic and vocabulary, and break accuracy down by review length.\n- Or just a description: average review length, and what the reviews are about.\n\n**Likely fixes, depending on the cause:**\n- **Shorter texts or another topic:** add labeled examples from your own data to the training set. That will help more than any tuning.\n- **No such data available:** a small pretrained sentence-embedding model with a linear classifier on top would handle short reviews and other topics much better. It's still CPU-friendly, though slower than TF-IDF.\n\nI'd also update the README to give about 88% on in-domain data, with a note that it only holds for long movie review passages. Shall I make that change?",
+ "ttft_ms": 4924,
+ "type": "result",
+ "duration_ms": 32754,
+ "uuid": "e560a778-4355-4629-ab36-7f3a08684a7f",
+ "ttft_stream_ms": 763,
+ "time_to_request_ms": 131,
+ "time_to_request_phases_ms": {
+  "other": 6,
+  "system_prompt": 45,
+  "resume_other": 0,
+  "process_user_input": 1,
+  "input_attachments": 5,
+  "input_hooks": 23,
+  "transcript_persist": 3,
+  "tool_pool_refresh": 1,
+  "init_message": 2,
+  "engine_pickup": 1,
+  "message_prep": 0,
+  "model_config_wait": 1,
+  "autocompact": 1,
+  "query_setup": 3,
+  "auto_mode_context_wait": 18,
+  "model_gates": 0,
+  "tool_schema_build": 4,
+  "message_normalization": 1,
+  "client_creation": 3,
+  "request_build": 13
+ },
+ "turn_start_resume_kind": "none",
+ "process_turn_index": 0,
+ "time_to_request_loop_lag_ms": 13,
+ "time_to_request_cpu_ms": 218,
+ "time_to_request_major_faults": 2,
+ "input_attachments_detail": {
+  "slowest_producer": "queued_commands",
+  "slowest_producer_ms": 3,
+  "cpu_ms": 7,
+  "major_faults": 0
+ },
+ "first_content_frame_ms": 763,
+ "queued_turn_count": 0,
+ "result_index": 0
+}

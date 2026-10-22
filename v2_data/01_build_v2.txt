@@ -1,0 +1,8 @@
+Build a sentiment classifier from data.csv (columns: text, label; labels are "positive" / "negative").
+
+Deliverables:
+- train.py — trains a model, saves it, and prints the accuracy it achieves.
+- predict.py — exposes predict(text: str) -> str returning "positive" or "negative". Load the model once at import time, not on every call.
+- README.md — how to run it and the accuracy you got.
+
+Keep it simple and fast on CPU (a few seconds to train). Run it and report the number.

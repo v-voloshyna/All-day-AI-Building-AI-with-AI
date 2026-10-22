@@ -1,0 +1,132 @@
+{
+ "duration_api_ms": 35380,
+ "stop_reason": "end_turn",
+ "session_id": "10bc702d-8d32-4601-b05e-06381d9c8f81",
+ "total_cost_usd": 0.266506,
+ "usage": {
+  "input_tokens": 14,
+  "cache_creation_input_tokens": 18229,
+  "cache_read_input_tokens": 253090,
+  "output_tokens": 3500,
+  "output_tokens_details": {
+   "thinking_tokens": 565
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 18229,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [
+   {
+    "input_tokens": 2,
+    "output_tokens": 508,
+    "cache_read_input_tokens": 40600,
+    "cache_creation_input_tokens": 730,
+    "cache_creation": {
+     "ephemeral_5m_input_tokens": 0,
+     "ephemeral_1h_input_tokens": 730
+    },
+    "type": "message"
+   }
+  ],
+  "speed": "standard",
+  "fallback_credit": null
+ },
+ "modelUsage": {
+  "claude-opus-5-5": {
+   "inputTokens": 14,
+   "outputTokens": 3500,
+   "cacheReadInputTokens": 253090,
+   "cacheCreationInputTokens": 18229,
+   "webSearchRequests": 0,
+   "costUSD": 0.266506,
+   "contextWindow": 1000000,
+   "maxOutputTokens": 128000,
+   "thinkingTokens": 565,
+   "canonicalModel": "claude-opus-5-5",
+   "provider": "firstParty",
+   "costBasis": "list"
+  }
+ },
+ "permission_denials": [],
+ "terminal_reason": "completed",
+ "fast_mode_state": "off",
+ "fast_mode_disabled_reason": "sdk_opt_in_required",
+ "subagent_stats": {
+  "spawned": 0,
+  "requested": {
+   "background": 0,
+   "foreground": 0,
+   "unset": 0
+  },
+  "started_in_background": 0,
+  "max_depth": 0,
+  "spawned_by_subagents": 0,
+  "completed": 0,
+  "failed": 0,
+  "killed": {
+   "parent": 0,
+   "user": 0,
+   "system": 0
+  },
+  "refused": {
+   "depth_limit": 0,
+   "concurrency_limit": 0,
+   "budget": 0
+  },
+  "by_type": {}
+ },
+ "safety_stops": 0,
+ "is_error": false,
+ "num_turns": 7,
+ "subtype": "success",
+ "api_error_status": null,
+ "result": "I built the classifier, and it got **95.35% accuracy on eval.csv** (452 rows; macro F1 0.952). Training takes about 1 second on CPU.\n\n- **`train.py`**: trains a TF-IDF model (single words and word pairs) with logistic regression, saves it to `model.joblib`, and prints the eval accuracy with a per-class breakdown.\n- **`predict.py`**: loads the model once when it's imported and exposes `predict(text) -> \"positive\" | \"negative\"`. You can also run it from the command line: `python3 predict.py \"some text\"`. I tried one clearly positive and one clearly negative sentence and both came back right.\n- **`README.md`**: how to run it, the results, and the caveat below.\n\n**The 95% may be higher than you'd get on brand-new reviews.** Each row is a roughly 860-character excerpt of a longer movie review. No eval text appears in data.csv, even as a near-copy: only 2 eval rows share any 10-word run with the training data. But the same films and actors appear in both files (for example \"carrie-anne moss\" and \"tim blake nelson\"). So different parts of the same original review are probably split between training and eval. I can't confirm this because there's no review ID column. If you have one, splitting by review would give a more honest number.\n\nI picked the model settings once up front and didn't tune them against eval.csv. `model.joblib` is already listed in your `.gitignore`, so it won't be committed. Nothing is committed yet; the three new files are untracked.",
+ "ttft_ms": 2241,
+ "type": "result",
+ "duration_ms": 45095,
+ "uuid": "a0402735-f721-4705-b62d-e217032a390c",
+ "ttft_stream_ms": 826,
+ "time_to_request_ms": 135,
+ "time_to_request_phases_ms": {
+  "other": 10,
+  "system_prompt": 11,
+  "resume_other": 0,
+  "process_user_input": 2,
+  "input_attachments": 8,
+  "input_hooks": 21,
+  "transcript_persist": 21,
+  "tool_pool_refresh": 2,
+  "init_message": 15,
+  "engine_pickup": 1,
+  "message_prep": 0,
+  "model_config_wait": 1,
+  "autocompact": 1,
+  "query_setup": 4,
+  "auto_mode_context_wait": 27,
+  "model_gates": 0,
+  "tool_schema_build": 3,
+  "message_normalization": 1,
+  "client_creation": 2,
+  "request_build": 5
+ },
+ "turn_start_resume_kind": "none",
+ "process_turn_index": 0,
+ "time_to_request_loop_lag_ms": 7,
+ "time_to_request_cpu_ms": 225,
+ "time_to_request_major_faults": 2,
+ "input_attachments_detail": {
+  "slowest_producer": "queued_commands",
+  "slowest_producer_ms": 5,
+  "cpu_ms": 12,
+  "major_faults": 0
+ },
+ "first_content_frame_ms": 826,
+ "queued_turn_count": 0,
+ "result_index": 0
+}

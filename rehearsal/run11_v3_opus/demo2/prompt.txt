@@ -1,0 +1,1 @@
+Write a thorough pytest suite for this classifier. Cover edge cases and hard inputs. Run it.

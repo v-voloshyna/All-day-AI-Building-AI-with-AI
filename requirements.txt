@@ -1,0 +1,6 @@
+pandas>=2.0
+scikit-learn>=1.3
+numpy
+joblib
+pytest
+anthropic        # only for loop.py --backend api

@@ -1,0 +1,25 @@
+usage: eval.py [-h] --data DATA [--stage STAGE] [--repo REPO] [--show]
+               [--reported REPORTED] [--limit LIMIT] [--no-log] [--json]
+eval.py: error: unrecognized arguments: --reported 0.9307
+usage: eval.py [-h] --data DATA [--stage STAGE] [--repo REPO] [--show]
+               [--reported REPORTED] [--limit LIMIT] [--no-log] [--json]
+eval.py: error: unrecognized arguments: holdout
+  ✗  gold=positive pred=negative  Not bad at all, actually.
+  ✓  gold=positive pred=positive  I can't say I disliked it.
+  ✗  gold=positive pred=negative  It wasn't the disaster everyone promised.
+  ✗  gold=positive pred=negative  Didn't hate it.
+  ✗  gold=negative pred=positive  Two hours of my life I'll never get back. Fantastic.
+  ✓  gold=negative pred=negative  Oh great, another sequel nobody asked for.
+  ✓  gold=negative pred=negative  Loved the part where it ended.
+  ✓  gold=negative pred=negative  Gorgeous visuals, and that's the only nice thing I can say.
+  ✓  gold=positive pred=positive  Slow start, but by the end I was in tears, in a good way.
+  ✓  gold=negative pred=negative  Save your money.
+  ✓  gold=negative pred=negative  The battery dies in an hour.
+  ✗  gold=positive pred=negative  Arrived early and works exactly as described.
+
+adversarial.csv: accuracy 0.583  (7/12)   stage=baseline   0.0s
+
+Agent's model, top features for negative: bad, plot, movie, action, comedy, effects, alien, worst, sequel, this, why, off
+Agent's model, top features for positive: family, life, disney, performance, mother, war, father, her, relationship, his, american, story
+eval.csv: accuracy 0.931  (376/404)   stage=baseline   0.1s
+holdout.csv: accuracy 0.684  (684/1000)   stage=baseline   0.2s

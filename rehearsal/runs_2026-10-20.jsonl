@@ -1,0 +1,3 @@
+{"ts": "2026-10-20T19:42:00", "stage": "baseline", "data": "eval", "n": 500, "correct": 499, "acc": 0.998, "holdout": false, "reported": "0.997"}
+{"ts": "2026-10-20T19:42:03", "stage": "baseline", "data": "holdout", "n": 1000, "correct": 739, "acc": 0.739, "holdout": true, "reported": null}
+{"ts": "2026-10-20T19:42:04", "stage": "own_tests", "data": "adversarial", "n": 12, "correct": 6, "acc": 0.5, "holdout": false, "reported": null}

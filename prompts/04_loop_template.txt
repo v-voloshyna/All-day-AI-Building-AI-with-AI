@@ -1,0 +1,15 @@
+You are improving a text classifier in this repository (current directory).
+
+Current accuracy on eval.csv: {score:.4f}
+Change history so far (one line per iteration, KEEP = improved the score, DROP = reverted):
+{history}
+
+Current train.py:
+```python
+{train_py}
+```
+
+Task: propose and apply ONE change to train.py that raises accuracy on eval.csv. Any change is allowed.
+Edit train.py in place; do not create other files. The harness will retrain and score it for you.
+End your reply with exactly one line of the form:
+RATIONALE: <one sentence saying what you changed and why>

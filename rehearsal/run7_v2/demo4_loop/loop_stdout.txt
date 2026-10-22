@@ -1,0 +1,10 @@
+# loop started 22:58:53  backend=claude max_iter=8 cap=240s
+iter0  (as left after demo 3)                        0.9513
+iter1  Raised LogisticRegression C from 4 to 16 so   0.9513→0.9513  DROP  200.0k tok   32s
+iter2  Extended the TF-IDF ngram_range from (1, 2)   0.9513→0.9535  KEEP  396.6k tok   35s
+iter3  Added character 2–5-gram TF-IDF features nex  0.9535→0.9646  KEEP  471.7k tok   28s
+iter4  Widened the character TF-IDF n-gram range fr  0.9646→0.9602  DROP  712.2k tok   50s
+iter5  Switched the character TF-IDF from `char_wb`  0.9646→0.9580  DROP  1048.2k tok   66s
+iter6  Raised LogisticRegression C from 4 to 10 bec  0.9646→0.9668  KEEP  1331.4k tok   65s
+# cap reached after 301s; stopping
+# done: final eval 0.9668, 1331.4k tokens, 301s. Now: ev holdout loop   and   git diff iter<k-1> iter<k> -- train.py

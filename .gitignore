@@ -1,0 +1,13 @@
+# caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+*.joblib
+
+# runtime logs written by eval.py / truth.py / loop.py (cleared by reset.sh);
+# keep a copy under rehearsal/ if a run is worth keeping
+loop.log
+runs.jsonl
+notes.jsonl
+loop_runs/

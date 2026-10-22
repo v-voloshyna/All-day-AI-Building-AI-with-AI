@@ -1,0 +1,1 @@
+The model fails on sarcastic negative reviews. Generate 300 sarcastic negative training examples as synthetic.csv (same columns as data.csv), include them in training, retrain, and re-run the sarcasm tests.

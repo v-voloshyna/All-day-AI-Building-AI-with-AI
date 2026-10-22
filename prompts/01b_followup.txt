@@ -1,0 +1,1 @@
+Add a confusion matrix to the training output, and a --text flag to predict.py so I can run:  python predict.py --text "some review"

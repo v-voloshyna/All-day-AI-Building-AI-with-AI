@@ -1,0 +1,1 @@
+I evaluated your model on a held-out set of reviews it has never seen and got {HOLDOUT} accuracy. You reported {REPORTED}. Why the gap?

@@ -1,0 +1,33 @@
+session_id=1429fe54-8885-427f-ab98-8e0647cffd8d  turns=3  34s  $0.59  model=['claude-opus-5-5']
+---- agent reply ----
+I can't tell you the exact cause without your data. The most likely explanation is that your reviews look different from the training data, and short reviews fit 68% well.
+
+**My 93.07% wasn't caused by leakage.** No eval review appears in the training data. Only 9 of the 404 eval reviews share even one 8-word phrase with a training review, and none share five.
+
+**But 93.07% was on the lucky side.** In 5-fold cross-validation on `data.csv`, folds ranged from 86% to 93%, with a mean of **88.4%**. A fairer figure for this kind of data is about 88%.
+
+**Most of the remaining gap is very likely a mismatch between your data and the training data.** All of the training and eval data looks the same: roughly 150-word passages taken from longer movie reviews (median exactly 150 words, often starting mid-sentence). Both splits come from that one source, so the 93% only tells you how the model does on more of the same. When I cut the eval reviews short, accuracy drops sharply:
+
+| Words kept per review | Eval accuracy |
+|---|---|
+| 150 (full) | 93.1% |
+| 80 | 87.4% |
+| 40 | 81.4% |
+| 20 | 71.0% |
+| 10 | 64.4% |
+
+Your 68.4% falls between the 10- and 20-word results. A word-count model needs many words to outvote odd individual weights, like "good" leaning negative, which the earlier tests found. The other likely shift is topic: products, restaurants or tweets use different words from film criticism, and a model trained on 2,000 movie review passages has no useful weights for those words.
+
+One thing to rule out quickly: check that your labels are exactly lowercase "positive" and "negative". Something like `Positive` or `1/0` would make every comparison fail, so you'd see 0% or around 50%. That probably isn't the cause here, since 68% is too high for it.
+
+**To pin it down, I'd need one of these:**
+- Your held-out file (or a sample of it). I can then compare length, topic and vocabulary, and break accuracy down by review length.
+- Or just a description: average review length, and what the reviews are about.
+
+**Likely fixes, depending on the cause:**
+- **Shorter texts or another topic:** add labeled examples from your own data to the training set. That will help more than any tuning.
+- **No such data available:** a small pretrained sentence-embedding model with a linear classifier on top would handle short reviews and other topics much better. It's still CPU-friendly, though slower than TF-IDF.
+
+I'd also update the README to give about 88% on in-domain data, with a note that it only holds for long movie review passages. Shall I make that change?
+---------------------
+exit=0

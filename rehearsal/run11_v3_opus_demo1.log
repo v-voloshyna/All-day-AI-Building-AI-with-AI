@@ -1,0 +1,29 @@
+session_id=1429fe54-8885-427f-ab98-8e0647cffd8d  turns=5  29s  $0.19  model=['claude-opus-5-5']
+---- agent reply ----
+I built the classifier and ran it: it gets **93.07% accuracy on eval.csv** (404 examples). Training takes about 1.5 s on CPU.
+
+- **`train.py`** trains a TF-IDF model (single words and word pairs) with logistic regression on `data.csv`, saves it to `model.joblib`, and prints the eval accuracy.
+- **`predict.py`** has `predict(text) -> "positive" | "negative"`. It loads the model once when the module is imported, and you can also run it from the command line with `python predict.py "some text"`. I tried it on one clearly positive and one clearly negative sentence and both came back correct.
+- **`README.md`** covers setup, how to train and predict, and the accuracy.
+
+I didn't use eval.csv to choose settings, so 93.07% is a fair measure on unseen data. I also checked that none of the eval texts appear in the training data.
+
+`model.joblib` isn't committed because the existing `.gitignore` excludes `*.joblib`, so run `python train.py` before using `predict.py`. Nothing has been committed yet.
+---------------------
+eval.csv: accuracy 0.931  (376/404)   stage=baseline   0.1s
+holdout.csv: accuracy 0.684  (684/1000)   stage=baseline   0.3s
+✗  gold=positive pred=negative  Not bad at all, actually.
+  ✓  gold=positive pred=positive  I can't say I disliked it.
+  ✗  gold=positive pred=negative  It wasn't the disaster everyone promised.
+  ✗  gold=positive pred=negative  Didn't hate it.
+  ✗  gold=negative pred=positive  Two hours of my life I'll never get back. Fantastic.
+  ✓  gold=negative pred=negative  Oh great, another sequel nobody asked for.
+  ✓  gold=negative pred=negative  Loved the part where it ended.
+  ✓  gold=negative pred=negative  Gorgeous visuals, and that's the only nice thing I can say.
+  ✓  gold=positive pred=positive  Slow start, but by the end I was in tears, in a good way.
+  ✓  gold=negative pred=negative  Save your money.
+  ✓  gold=negative pred=negative  The battery dies in an hour.
+  ✗  gold=positive pred=negative  Arrived early and works exactly as described.
+
+adversarial.csv: accuracy 0.583  (7/12)   stage=baseline   0.0s
+exit=0
