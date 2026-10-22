@@ -11,6 +11,6 @@ Nothing reachable from that repo names this folder. Keep this repository private
 - `eval.py`, `shortcut.py`, `dupes.py`, `diversity.py`, `loop.py`, `truth.py` — the oracle tools; `aliases.sh` wraps them (`source aliases.sh`).
 - `reset.sh` — restores the demo repo to `start` and clears the run logs. `rehearse.py` — headless rehearsal with `claude -p`.
 - `fixtures/` — a canned Demo-1 result for rehearsing the tools without an agent.
-- `rehearsal/` — saved agent output from past runs (run2–run10 are v1/v2 data; run11+ are v3). `v1_data/`, `v2_data/` — earlier datasets.
+- `rehearsal/` — saved agent output from past runs (run2–run10 are v1/v2 data; run11+ are v3). The v1/v2 datasets were removed on 2026-10-22 (still in git history, commit 012cf33).
 
 Run logs (`runs.jsonl`, `loop.log`, `loop_runs/`) are git-ignored; copy a run into `rehearsal/` if it is worth keeping.

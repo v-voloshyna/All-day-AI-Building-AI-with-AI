@@ -20,10 +20,10 @@ sentiment and topic words (bad, plot, action, effects / life, family, performanc
 inspection can name as a leak, and probe sentences behave like any bag-of-words model. The label is in the genre, and
 only data from outside the selection shows it.
 Prompt 01_build was also tightened (names eval.csv as the metric; "TF-IDF and a linear model is fine") so the agent has
-no split to design and no model to explore; the old prompt is in `v2_data/01_build_v2.txt`. On the v2 data the new
+no split to design and no model to explore; the old prompt was in `v2_data/01_build_v2.txt` (removed 2026-10-22, git history commit 012cf33). On the v2 data the new
 prompt alone already kept headless Opus from looking (`rehearsal/run10_prompt_only_v2_opus/`, reported 95.35%).
 Rebuild: `python build_data.py --demo "$DEMO"` then in the repo `git add -A && git commit --amend -m "start: data only" && git tag -f start`.
-v2 data, its build script, its shortcut.py and its prompt are kept in `oracle/v2_data/`; v1 in `oracle/v1_data/`.
+v2 data, its build script, its shortcut.py and its prompt were kept in `oracle/v2_data/`, v1 in `oracle/v1_data/`; both removed 2026-10-22 (git history, commit 012cf33).
 `shortcut.py` is now the v3 reveal: genre-word rates by label, data.csv vs holdout, and the one-rule genre classifier.
 `rehearse.py` (alias `rehearse`) runs one prompt headless with `--permission-mode auto`, keeps the reply and files under
 `rehearsal/<run>/`, and scores it; `--resume <session_id>` chains prompts in one session, as on stage.
@@ -47,7 +47,7 @@ v2 (`build_data.py`): disjoint windows, and a *collection artifact*. Positives a
 (film, colour, theatre, realise), negatives in American (movie, color, theater, realize), 90% of occurrences, as if
 scraped from two sites. `holdout.csv` is untouched. Dedup and grouped CV pass; the label is in the spelling.
 Rebuild: `python build_data.py --demo "$DEMO"` then in the repo `git add -A && git commit --amend -m "start: data only" && git tag -f start`.
-v1 data and its build script are kept in `oracle/v1_data/`.
+v1 data and its build script were in `oracle/v1_data/` (removed 2026-10-22, git history commit 012cf33).
 
 ## Setup
 Oracle terminal:  `source /Users/home/Desktop/presentation/oracle/aliases.sh && cd "$DEMO"`

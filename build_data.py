@@ -8,7 +8,7 @@ been collected from two different sections of a site. Nothing is rewritten; ever
 150-word window of a real review. holdout.csv is a random draw of reviews made *before* the selection,
 so it has the corpus' natural mix of genres and no artifact.
 
-Why v3: in v2 (spelling + movie/film swaps, kept in oracle/v2_data/) the artifact was one word pair with
+Why v3: in v2 (spelling + movie/film swaps, was kept in oracle/v2_data/, removed 2026-10-22) the artifact was one word pair with
 weights of +-15 and any look at the coefficients, or any probe sentence containing "movie", gave it away.
 Here the strongest features are ordinary sentiment and topic words (bad, plot, action, effects / life,
 family, performance, mother), nothing a feature inspection can name as a leak, and short hand-written
